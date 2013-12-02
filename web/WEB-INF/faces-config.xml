@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <managed-bean>
+        <managed-bean-name>userRegistration</managed-bean-name>
+        <managed-bean-class>com.user.UserRegistration</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+ 
+    <managed-bean>
+        <managed-bean-name>allUsers</managed-bean-name>
+        <managed-bean-class>com.user.Users</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ssnCheck</managed-bean-name>
+        <managed-bean-class>com.user.SessionBeansTest</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ssnCheckResult</managed-bean-name>
+        <managed-bean-class>com.user.SuccessSessionCheckBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/pages/userRegistration.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/sessionTest1.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/pages/fail.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/userDetails.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/userDetails.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/pages/fail.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/sessionTest1.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/pages/SessionResult.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/pages/fail.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

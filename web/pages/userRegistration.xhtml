@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>User Title</title>
+    </h:head>
+    <h:body>
+        <div>
+             Hello from user Registration<br/>
+        </div>
+       
+        <h:form>
+            <h:panelGrid id="uRegp" columns="2" style="background-color: aquamarine">
+                <f:facet name="header" >User Registration</f:facet>
+            <h:outputText id="userName" value="UserName"/>
+            <h:inputText id="userNameIn" value="#{userRegistration.userName}"/>
+            <h:outputText id="userPass" value="Enter Password"/>
+            <h:inputSecret id="userPassIn" value="#{userRegistration.userPass}"/>
+            <h:outputText id="userAdds" value="User Address"/>
+            <h:inputTextarea id="userAddsIn" value="#{userRegistration.userAdds}" cols="17"/>
+            <h:outputText id="userMail" value="Email Id"/>
+            <h:inputText id="userMailIn" value="#{userRegistration.mailId}"/>
+            <h:commandButton value="Submit" action="#{userRegistration.insertuserDetails}"/>
+            <h:commandButton value="Close"/>
+            </h:panelGrid>
+           <br/><br/><br/>  
+            
+            <h:dataTable value="#{allUsers.retrive()}" var="u" bgcolor="#F1F1F1" border="10" cellpadding="5" cellspacing="3" first="0" rows="4" width="30%" dir="LTR" frame="hsides" rules="all">
+                <f:facet name="header"><h:outputLabel id="hh" value="All User Details"/></f:facet>
+                <h:column>
+                  <f:facet name="header"><h:outputLabel id="hh1" value="Column1"/></f:facet>
+                    <h:outputText id="username" value="#{u.userName}"/>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header"><h:outputLabel id="hh2" value="Column2"/></f:facet>
+                    <h:outputText id="add" value="#{u.userAdds}"/>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header"><h:outputLabel id="hh3" value="Column3"/></f:facet>
+                    <h:outputText id="email" value="#{u.mailId}"/>
+                </h:column>
+            </h:dataTable>
+           
+           <h:selectOneMenu value="#{allUsers.s}">
+               <f:selectItems value="#{allUsers.addValues()}" >                   
+               </f:selectItems>              
+           </h:selectOneMenu>
+           <br/><br/>
+           <h:selectOneListbox value="#{allUsers.s}" size="1">
+               <f:selectItems value="#{allUsers.addValues()}" var="lst" itemValue="#{lst}"></f:selectItems>
+           </h:selectOneListbox>
+        </h:form>
+       
+        
+    </h:body>
+</html>
+
